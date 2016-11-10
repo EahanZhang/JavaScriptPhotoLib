@@ -1,1 +1,3 @@
 # JavaScriptPhotoLib
+
+JavaScript练习
