@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+body{
+	background:#000000;
+}
+
+#nav{
+	background:black;
+	border-color:#fff;
+}
+
+#nav li{
+	border-color:#fff;
+}
