@@ -42,6 +42,7 @@
 	
 	
 	<script type="text/javascript" src="javascriptImagelibrary/js/addLoadEvent.js"></script>
+	<script type="text/javascript" src="javascriptImagelibrary/js/insertAfter.js"></script>
 	<script type="text/javascript" src="javascriptImagelibrary/js/showPic.js"></script>
 	
 </body>
