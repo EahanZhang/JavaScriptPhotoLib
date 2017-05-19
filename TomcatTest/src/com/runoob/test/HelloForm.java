@@ -2,9 +2,11 @@ package com.runoob.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,13 +34,24 @@ public class HelloForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// 为名字和姓氏创建 Cookie
+		Cookie name = new Cookie("name", URLEncoder.encode(request.getParameter("name"), "UTF-8"));	  //中文转码
+		Cookie url = new Cookie("url", request.getParameter("url"));
+
+		// 设置Cookie过期日期
+		name.setMaxAge(60 * 60 * 24);
+		url.setMaxAge(60 * 60 * 24);
+		
+		// 在响应头中添加Cookie
+		response.addCookie(name);
+		response.addCookie(url);
+
 		response.setContentType("text/html;charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
-		String title = "Using Get read the form data";
+		String title = "设置 Cookie 实例";
 		
 		// Chinese stuff
-		String name = new String(request.getParameter("name").getBytes(), "UTF-8");
 		String docType = "<!DOCTYPE html> \n";
 		out.println(docType +
 				"<html>\n" +
@@ -48,9 +61,9 @@ public class HelloForm extends HttpServlet {
 				"<h1 align=\"center\">" + title + "</h1>\n" +
 				"<ul>\n" + 
 				"  <li><b>站点名</b>:"
-				+ name + "\n" +
+				+ request.getParameter("name") + "\n</li>" +
 				"  <li><b>网址</b>:"
-				+ request.getParameter("url") + "\n" +
+				+ request.getParameter("url") + "\n</li>" +
 				"</ul>\n" +
 				"</body></html>");
 		
